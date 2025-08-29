@@ -1,8 +1,11 @@
+import subprocess
+
 def exibir_menu():
     print("---------------------------------")
-    print("       Menu Suporte N2       ")
+    print("       Menu Suporte N2 - IPEA       ")
+    print("  Melhores comandos para manutenção  ")                             
     print("---------------------------------")
-    print("1. Rodar SFC /SCANNOW")
+    print("1. Rodar SFC/SCANNOW")
     print("2. Rodar CHKDSK")
     print("3. Executar programa X")
     print("4. Sair")
@@ -11,30 +14,36 @@ def exibir_menu():
 def main():
     exibir_menu()
 
-    # Pede ao usuário para digitar uma opção e armazena a resposta na variável 'escolha'
     escolha = input("Digite o número da sua escolha: ")
 
-    # Exibe a escolha do usuário
     print(f"Você escolheu a opção: {escolha}")
 
-       # Lógica de decisão
     if escolha == "1":
-        print("Opção 1 selecionada: Rodando SFC /SCANNOW...")
-        # Aqui no futuro o comando será executado
-    elif escolha == "2":
-        print("Opção 2 selecionada: Rodando CHKDSK...")
-        # Aqui no futuro o comando será executado
-    elif escolha == "3":
-        print("Opção 3 selecionada: Executando programa X...")
-        # Aqui no futuro o executável será rodado
-    elif escolha == "4":
-        print("Saindo do script. Tchau!")
-    else:
-        print("Opção inválida. Por favor, digite um número de 1 a 4.")
+        print(f"Opção 1 selecionada: Rodando SFC/SCANNOW...")
+        try:
+            subprocess.run(["sfc", "/scannow"], check=True, shell=True)
+            print("SFC/SCANNOW executado com sucesso.")
+        except subprocess.CalledProcessError as e:
+            print(f"Erro ao executar SFC/SCANNOW: {e}")
 
-# Inicia o script
-if __name__ == "__main__":
-    main()
+    if escolha == "2":
+        print(f"Opção 2 selecionada: Rodando CHKDSK...")
+        drive = input("Digite a letra do drive (ex: C)? ").upper()
+        print(f"Verificando o drive {drive}...")
+        try:
+            subprocess.run(["chkdsk", f"{drive}:", "/f", "/r"], check=True, shell=True)
+            print("CHKDSK executado com sucesso.")
+        except subprocess.CalledProcessError as e:
+            print(f"Erro ao executar CHKDSK: {e}")
+
+    if escolha == "3":
+        caminho_programa=r"\\storage1\bibsoft\# PH - Softwares\Dia a dia\driver_booster_setup.exe"
+        print(f"Opção 3 selecionada: Executando programa Driver Booster...")
+        try:
+            subprocess.run([caminho_programa], check=True, shell=True)
+            print("Programa executado com sucesso.")
+        except subprocess.CalledProcessError as e:
+            print(f"Erro ao executar o programa: {e}")
 
 # Chama a função principal para iniciar o script
 if __name__ == "__main__":
