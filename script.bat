@@ -24,6 +24,7 @@ if "%escolha%"=="2" goto chkdsk
 if "%escolha%"=="3" goto programa3
 if "%escolha%"=="4" goto programa4
 if "%escolha%"=="5" goto programa5
+if "%escolha%"=="6" goto programa6
 if "%escolha%"=="" goto sair
 
 echo Opcao invalida. Por favor, digite um numero de 1 a 4.
@@ -85,7 +86,19 @@ if %errorlevel% neq 0 (
     echo Programa executado com sucesso.
 )
 pause
+goto menu]
+
+:programa6
+echo Opcao 6 selecionada: Executando comando para limpar arquivos temporarios...
+start "" "del /F /Q /S "%TEMP%\*""
+if %errorlevel% neq 0 (
+    echo Erro ao executar o comando.
+) else (
+    echo Comando executado com sucesso.
+)
+pause
 goto menu
+
 
 :sair
 echo Saindo do script. Tchau!
