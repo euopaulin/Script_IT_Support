@@ -17,7 +17,9 @@ echo 4. Executar Revo Uninstaller
 echo 5. Executar Windows Defender
 echo 6. Limpar arquivos temporarios
 echo 7. Restaurar imagem do sistema
-echo 8. Sair
+echo 8. Ver IP da maquina
+echo 9. Pingar um endereco IP
+echo 10. Sair
 echo ----------------------------------------------
 set /p "escolha=Digite o numero da sua escolha: "
 echo Voce escolheu a opcao: %escolha%
@@ -30,9 +32,11 @@ if "%escolha%"=="4" goto programa4
 if "%escolha%"=="5" goto programa5
 if "%escolha%"=="6" goto programa6
 if "%escolha%"=="7" goto programa7
-if "%escolha%"=="8" goto sair
+if "%escolha%"=="8" goto programa8
+if "%escolha%"=="9" goto programa9
+if "%escolha%"=="10" goto sair
 
-echo Opcao invalida. Por favor, digite um numero de 1 a 8.
+echo Opcao invalida. Por favor, digite um numero de 1 a 10.
 pause
 goto menu
 
@@ -115,6 +119,30 @@ if %errorlevel% neq 0 (
 )
 pause
 goto menu
+
+:programa8
+echo Opcao 8 selecionada: Verificando o IP da maquina...
+ipconfig
+if %errorlevel% neq 0 (
+    echo Erro ao executar o programa.
+) else (
+    echo Programa executado com sucesso.
+)
+pause
+goto menu
+
+:programa9
+echo Opcao 9 selecionada: Pingar um endereco IP...
+set /p "endereco=Digite o endereco IP ou dominio para pingar: "
+ping %endereco%
+if %errorlevel% neq 0 (
+    echo Erro ao executar o programa.
+) else (
+    echo Programa executado com sucesso.
+)
+pause
+goto menu
+
 
 :sair
 echo Saindo do script. Tchau!
