@@ -133,7 +133,7 @@ goto menu
 
 :programa9
 echo Opcao 9 selecionada: Pingar um endereco IP...
-set /p "endereco=Digite o endereco IP ou dominio para pingar: "
+set /p "endereco=Digite o endereco IP ou HostName para pingar: "
 ping %endereco%
 if %errorlevel% neq 0 (
     echo Erro ao executar o programa.
