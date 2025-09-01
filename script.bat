@@ -5,15 +5,19 @@ goto menu
 cls
 echo ----------------------------------------------
 echo            Menu Suporte N2 - IPEA
-echo  Melhores comandos para manuntecao de máquinas
+echo  Melhores comandos para manuntecao de maquinas
 echo ----------------------------------------------
 echo           Feito por Paulo Henrique
+echo              Escolha uma opcao:
 echo ----------------------------------------------
 echo 1. Rodar SFC/SCANNOW
 echo 2. Rodar CHKDSK
 echo 3. Executar instalador do Driver Booster
 echo 4. Executar Revo Uninstaller
-echo 4. Sair
+echo 5. Executar Windows Defender
+echo 6. Limpar arquivos temporarios
+echo 7. Restaurar imagem do sistema
+echo 8. Sair
 echo ----------------------------------------------
 set /p "escolha=Digite o numero da sua escolha: "
 echo Voce escolheu a opcao: %escolha%
@@ -25,9 +29,10 @@ if "%escolha%"=="3" goto programa3
 if "%escolha%"=="4" goto programa4
 if "%escolha%"=="5" goto programa5
 if "%escolha%"=="6" goto programa6
-if "%escolha%"=="" goto sair
+if "%escolha%"=="7" goto programa7
+if "%escolha%"=="8" goto sair
 
-echo Opcao invalida. Por favor, digite um numero de 1 a 4.
+echo Opcao invalida. Por favor, digite um numero de 1 a 8.
 pause
 goto menu
 
@@ -90,7 +95,8 @@ goto menu]
 
 :programa6
 echo Opcao 6 selecionada: Executando comando para limpar arquivos temporarios...
-start "" "del /F /Q /S "%TEMP%\*""
+del /F /Q /S "%TEMP%\*"
+for /D %%p in ("%TEMP%\*") do rmdir "%%p" /S /Q
 if %errorlevel% neq 0 (
     echo Erro ao executar o comando.
 ) else (
@@ -99,6 +105,16 @@ if %errorlevel% neq 0 (
 pause
 goto menu
 
+:programa7
+echo Opcao 7 selecionada: Rodando restauração de imagem do sistema...
+sfc DISM /Online /Cleanup-Image /RestoreHealth
+if %errorlevel% neq 0 (
+    echo Erro ao executar o programa.
+) else (
+    echo Programa executado com sucesso.
+)
+pause
+goto menu
 
 :sair
 echo Saindo do script. Tchau!
