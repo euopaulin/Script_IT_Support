@@ -2,7 +2,7 @@
 
 ### Script para otimizar e automatizar rotinas de manutenção e aprimoramento de desempenho em máquinas."
 
-### O script foi desenvolvido em duas versões: uma definitiva em BAT e outra em Python, usada para estudos da linguagem.
+### O script foi desenvolvido em três versões: Em BAT, Shell e outra em Python, usada para estudos da linguagem.
 
 ## Como utilizar o script:
 
@@ -10,7 +10,7 @@
 - ### Salve o arquivo em um diretório de sua preferência e execute-o com privilégios de administrador.
 - ### Algumas opções precisarão de ajustes nos caminhos de rede, que podem ser feitos editando o script diretamente no Bloco de Notas ou no VSCode.
 
-### Por exemplo nesse trecho é necessario alterar para o caminho especifico onde está o executavel do revo no seu ambiente:
+#### Por exemplo nesse trecho é necessario alterar para o caminho especifico onde está o executavel do revo no seu ambiente:
 
 ```bash
 
