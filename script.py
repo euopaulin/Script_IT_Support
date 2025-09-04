@@ -46,6 +46,5 @@ def main():
             print(f"Erro ao executar o programa: {e}")
 
 # Chama a função principal para iniciar o script
-if __name__ == "__main__":
-    main()
+main()
 
