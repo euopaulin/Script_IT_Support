@@ -1,32 +1,36 @@
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Warning "Este script precisa ser executado como Administrador. Reiniciando com privilégios elevados..."
+    Start-Process powershell "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+    exit
+}
+
 function Show-Menu {
     Clear-Host
     Write-Host "------------------------------------------------------" -ForegroundColor Cyan
     Write-Host "                Menu Suporte N2 - IPEA" -ForegroundColor White
     Write-Host "Comandos Essenciais de Manutencao para Windows 10 e 11" -ForegroundColor White
+    write-Host "           Desenvolvido por Paulo Henrique" -ForegroundColor White
     Write-Host "------------------------------------------------------" -ForegroundColor Cyan
     Write-Host "                Escolha uma opcao:" -ForegroundColor White
     Write-Host "------------------------------------------------------" -ForegroundColor Cyan
-    Write-Host "1.  Rodar SFC/SCANNOW" -ForegroundColor Blue
-    Write-Host "2.  Rodar CHKDSK" -ForegroundColor Blue
-    Write-Host "3.  Executar instalador do Driver Booster" -ForegroundColor Blue
-    Write-Host "4.  Executar Revo Uninstaller" -ForegroundColor Blue
-    Write-Host "5.  Executar Windows Defender" -ForegroundColor Blue
-    Write-Host "6.  Limpar arquivos temporarios" -ForegroundColor Blue
-    Write-Host "7.  Restaurar imagem do sistema (DISM)" -ForegroundColor Blue
-    Write-Host "8.  Ver IP da maquina" -ForegroundColor Blue
-    Write-Host "9.  Pingar um endereco IP" -ForegroundColor Blue
-    Write-Host "10. Sair" -ForegroundColor Red
+    Write-Host "1.  Rodar SFC/SCANNOW" -ForegroundColor DarkRed
+    Write-Host "2.  Rodar CHKDSK" -ForegroundColor DarkRed
+    Write-Host "3.  Executar instalador do Driver Booster" -ForegroundColor DarkRed
+    Write-Host "4.  Executar Revo Uninstaller" -ForegroundColor DarkRed
+    Write-Host "5.  Executar Windows Defender" -ForegroundColor DarkRed
+    Write-Host "6.  Limpar arquivos temporarios" -ForegroundColor DarkRed
+    Write-Host "7.  Restaurar imagem do sistema (DISM)" -ForegroundColor DarkRed
+    Write-Host "8.  Ver IP da maquina" -ForegroundColor DarkRed
+    Write-Host "9.  Pingar um endereco IP" -ForegroundColor DarkRed
+    Write-Host "10. Sair" -ForegroundColor DarkGreen
     Write-Host "------------------------------------------------------" -ForegroundColor Cyan
 }
 
-# Laço principal do menu
 while ($true) {
     Show-Menu
 
-    # Solicita a escolha do usuário
     $escolha = Read-Host "Digite o numero da sua escolha"
 
-    # Manipula a escolha do usuário
     switch ($escolha) {
         "1" {
             Write-Host "Opcao 1 selecionada: Rodando SFC/SCANNOW..." -ForegroundColor Yellow
@@ -161,7 +165,6 @@ while ($true) {
         }
     }
     
-    # Pausa e espera a interação do usuário para continuar
     Write-Host ""
     Write-Host "Pressione qualquer tecla para continuar..." -ForegroundColor White
     $null = [System.Console]::ReadKey($true)
